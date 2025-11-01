@@ -1,0 +1,576 @@
+        :root {
+            --navy-dark: #0f2847;
+            --navy-medium: #1a3a5c;
+            --white: #ffffff;
+            --gray-light: #f5f5f5;
+            --gray-medium: #e8e8e8;
+            --gray-text: #666666;
+            --gray-dark: #333333;
+            --blue-primary: #0066cc;
+            --yellow-primary: #f5a623;
+            --border-color: #e0e0e0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--gray-dark);
+            background-color: var(--gray-light);
+            line-height: 1.5;
+        }
+        
+ 
+        .header {
+            background-color: var(--navy-dark);
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .back-button {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: opacity 0.3s ease;
+        }
+        
+        .back-button:hover {
+            opacity: 0.8;
+            color: var(--white);
+        }
+        
+        .back-icon {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .logo {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--white);
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        
+        .logo-icon {
+            width: 24px;
+            height: 24px;
+            background: var(--white);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo-shield {
+            width: 14px;
+            height: 16px;
+            background: var(--navy-dark);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        }
+        
+       
+        .progress-stepper {
+            background: var(--white);
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .stepper-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .stepper-line {
+            position: absolute;
+            top: 16px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--gray-medium);
+            z-index: 0;
+        }
+        
+        .stepper-progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: var(--blue-primary);
+            width: 33.33%;
+            transition: width 0.5s ease;
+        }
+        
+        .stepper-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+            z-index: 1;
+            flex: 1;
+        }
+        
+        .step-circle {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--white);
+            border: 2px solid var(--gray-medium);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .step-circle.completed {
+            background: var(--blue-primary);
+            border-color: var(--blue-primary);
+            color: var(--white);
+        }
+        
+        .step-circle.active {
+            border-color: var(--blue-primary);
+            background: var(--white);
+        }
+        
+        .step-icon {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .step-label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--gray-text);
+        }
+        
+        .step-circle.completed ~ .step-label,
+        .step-circle.active ~ .step-label {
+            color: var(--gray-dark);
+        }
+        
+        
+        .trip-info-bar {
+            background: var(--white);
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .trip-info-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .trip-info-item {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .trip-info-label {
+            font-weight: 600;
+            color: var(--gray-dark);
+        }
+        
+        .trip-info-value {
+            color: var(--gray-text);
+        }
+        
+        .edit-button {
+            padding: 0.375rem 1rem;
+            border: 1px solid var(--blue-primary);
+            background: var(--white);
+            color: var(--blue-primary);
+            border-radius: 4px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .edit-button:hover {
+            background: var(--blue-primary);
+            color: var(--white);
+        }
+        
+       
+        .main-content {
+            padding: 2rem 0 3rem;
+        }
+        
+       
+        .plans-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .plan-card {
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .plan-header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .plan-card.voyager .plan-header {
+            background: var(--gray-light);
+        }
+        
+        .plan-card.voyager-plus .plan-header {
+            background: var(--white);
+        }
+        
+        .plan-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .plan-card.voyager .plan-icon {
+            background: var(--navy-dark);
+        }
+        
+        .plan-card.voyager-plus .plan-icon {
+            background: var(--yellow-primary);
+        }
+        
+        .plan-icon-shield {
+            width: 32px;
+            height: 36px;
+            background: var(--white);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        }
+        
+        .plan-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+        
+        .plan-original-price {
+            font-size: 0.875rem;
+            color: var(--gray-text);
+            text-decoration: line-through;
+            margin-bottom: 0.25rem;
+        }
+        
+        .plan-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+        
+        .plan-card.voyager .plan-price {
+            color: var(--navy-dark);
+        }
+        
+        .plan-card.voyager-plus .plan-price {
+            color: var(--yellow-primary);
+        }
+        
+        .plan-price-cents {
+            font-size: 1.5rem;
+        }
+        
+        .plan-total-label {
+            font-size: 0.875rem;
+            color: var(--gray-text);
+            margin-bottom: 0.5rem;
+        }
+        
+        .plan-disclaimer {
+            font-size: 0.75rem;
+            color: var(--gray-text);
+            line-height: 1.4;
+        }
+        
+        .coverage-table {
+            width: 100%;
+        }
+        
+        .coverage-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .coverage-row:last-child {
+            border-bottom: none;
+        }
+        
+        .coverage-cell {
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .coverage-label {
+            font-weight: 500;
+            color: var(--gray-dark);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .info-icon {
+            width: 16px;
+            height: 16px;
+            border: 1px solid var(--gray-text);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            color: var(--gray-text);
+            cursor: help;
+        }
+        
+        .coverage-value {
+            color: var(--gray-dark);
+            font-weight: 500;
+        }
+        
+        .coverage-unavailable {
+            color: var(--gray-text);
+            font-style: italic;
+        }
+        
+        .coverage-select {
+            width: 100%;
+            padding: 0.375rem 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background: var(--white);
+            font-size: 0.875rem;
+            cursor: pointer;
+        }
+        
+        /* Section Headers */
+        .section-header {
+            background: var(--white);
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+        }
+        
+        .section-title {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--gray-dark);
+        }
+        
+        .show-benefits-link {
+            grid-column: 1;
+            padding: 1rem 1.5rem;
+            color: var(--blue-primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+        
+        .show-benefits-link:hover {
+            text-decoration: underline;
+        }
+        
+        .plan-actions {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            align-items: center;
+        }
+        
+        .choose-plan-button {
+            width: 100%;
+            padding: 0.875rem 2rem;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .plan-card.voyager .choose-plan-button {
+            background: var(--navy-dark);
+            color: var(--white);
+        }
+        
+        .plan-card.voyager .choose-plan-button:hover {
+            background: var(--navy-medium);
+        }
+        
+        .plan-card.voyager-plus .choose-plan-button {
+            background: var(--yellow-primary);
+            color: var(--white);
+        }
+        
+        .plan-card.voyager-plus .choose-plan-button:hover {
+            opacity: 0.9;
+        }
+        
+        .policy-link {
+            color: var(--gray-dark);
+            text-decoration: underline;
+            font-size: 0.875rem;
+        }
+        
+        .policy-link:hover {
+            color: var(--blue-primary);
+        }
+        
+        .footer {
+            background: var(--navy-dark);
+            color: var(--white);
+            padding: 1.5rem 0;
+            margin-top: auto;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .footer-copyright {
+            font-size: 0.875rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .footer-link {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: opacity 0.3s ease;
+        }
+        
+        .footer-link:hover {
+            opacity: 0.8;
+            color: var(--white);
+        }
+        
+        @media (max-width: 991px) {
+            .plans-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .coverage-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-header {
+                grid-template-columns: 1fr;
+            }
+            
+            .coverage-cell:nth-child(1) {
+                border-bottom: 1px solid var(--gray-light);
+            }
+            
+            .coverage-cell:nth-child(2),
+            .coverage-cell:nth-child(3) {
+                padding-left: 3rem;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .logo {
+                position: static;
+                transform: none;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .stepper-container {
+                padding: 0 1rem;
+            }
+            
+            .step-label {
+                font-size: 0.75rem;
+            }
+            
+            .trip-info-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+        
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        .choose-plan-button,
+        .edit-button,
+        .back-button {
+            will-change: transform;
+        }
+  
