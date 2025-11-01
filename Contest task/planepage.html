@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Compare travel insurance plans for your trip to Australia. Choose between Voyager and Voyager Plus coverage options.">
+    <meta name="keywords" content="travel insurance, trip insurance, travel coverage, international travel insurance"/>
+    <meta name="author" content="Eng.Loay" />
+    <title>Travel Insurance Plans - Logo Ipsum</title>
+    
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    
+   
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --navy-dark: #0f2847;
+            --navy-medium: #1a3a5c;
+            --white: #ffffff;
+            --gray-light: #f5f5f5;
+            --gray-medium: #e8e8e8;
+            --gray-text: #666666;
+            --gray-dark: #333333;
+            --blue-primary: #0066cc;
+            --yellow-primary: #f5a623;
+            --border-color: #e0e0e0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--gray-dark);
+            background-color: var(--gray-light);
+            line-height: 1.5;
+        }
+        
+        /* Header */
+        .header {
+            background-color: var(--navy-dark);
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .back-button {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: opacity 0.3s ease;
+        }
+        
+        .back-button:hover {
+            opacity: 0.8;
+            color: var(--white);
+        }
+        
+        .back-icon {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .logo {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--white);
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        
+        .logo-icon {
+            width: 24px;
+            height: 24px;
+            background: var(--white);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo-shield {
+            width: 14px;
+            height: 16px;
+            background: var(--navy-dark);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        }
+        
+       
+        .progress-stepper {
+            background: var(--white);
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .stepper-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .stepper-line {
+            position: absolute;
+            top: 16px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--gray-medium);
+            z-index: 0;
+        }
+        
+        .stepper-progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: var(--blue-primary);
+            width: 33.33%;
+            transition: width 0.5s ease;
+        }
+        
+        .stepper-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+            z-index: 1;
+            flex: 1;
+        }
+        
+        .step-circle {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--white);
+            border: 2px solid var(--gray-medium);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .step-circle.completed {
+            background: var(--blue-primary);
+            border-color: var(--blue-primary);
+            color: var(--white);
+        }
+        
+        .step-circle.active {
+            border-color: var(--blue-primary);
+            background: var(--white);
+        }
+        
+        .step-icon {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .step-label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--gray-text);
+        }
+        
+        .step-circle.completed ~ .step-label,
+        .step-circle.active ~ .step-label {
+            color: var(--gray-dark);
+        }
+        
+        
+        .trip-info-bar {
+            background: var(--white);
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .trip-info-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .trip-info-item {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .trip-info-label {
+            font-weight: 600;
+            color: var(--gray-dark);
+        }
+        
+        .trip-info-value {
+            color: var(--gray-text);
+        }
+        
+        .edit-button {
+            padding: 0.375rem 1rem;
+            border: 1px solid var(--blue-primary);
+            background: var(--white);
+            color: var(--blue-primary);
+            border-radius: 4px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .edit-button:hover {
+            background: var(--blue-primary);
+            color: var(--white);
+        }
+        
+       
+        .main-content {
+            padding: 2rem 0 3rem;
+        }
+        
+       
+        .plans-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .plan-card {
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .plan-header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .plan-card.voyager .plan-header {
+            background: var(--gray-light);
+        }
+        
+        .plan-card.voyager-plus .plan-header {
+            background: var(--white);
+        }
+        
+        .plan-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .plan-card.voyager .plan-icon {
+            background: var(--navy-dark);
+        }
+        
+        .plan-card.voyager-plus .plan-icon {
+            background: var(--yellow-primary);
+        }
+        
+        .plan-icon-shield {
+            width: 32px;
+            height: 36px;
+            background: var(--white);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        }
+        
+        .plan-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+        
+        .plan-original-price {
+            font-size: 0.875rem;
+            color: var(--gray-text);
+            text-decoration: line-through;
+            margin-bottom: 0.25rem;
+        }
+        
+        .plan-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+        
+        .plan-card.voyager .plan-price {
+            color: var(--navy-dark);
+        }
+        
+        .plan-card.voyager-plus .plan-price {
+            color: var(--yellow-primary);
+        }
+        
+        .plan-price-cents {
+            font-size: 1.5rem;
+        }
+        
+        .plan-total-label {
+            font-size: 0.875rem;
+            color: var(--gray-text);
+            margin-bottom: 0.5rem;
+        }
+        
+        .plan-disclaimer {
+            font-size: 0.75rem;
+            color: var(--gray-text);
+            line-height: 1.4;
+        }
+        
+        .coverage-table {
+            width: 100%;
+        }
+        
+        .coverage-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .coverage-row:last-child {
+            border-bottom: none;
+        }
+        
+        .coverage-cell {
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .coverage-label {
+            font-weight: 500;
+            color: var(--gray-dark);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .info-icon {
+            width: 16px;
+            height: 16px;
+            border: 1px solid var(--gray-text);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            color: var(--gray-text);
+            cursor: help;
+        }
+        
+        .coverage-value {
+            color: var(--gray-dark);
+            font-weight: 500;
+        }
+        
+        .coverage-unavailable {
+            color: var(--gray-text);
+            font-style: italic;
+        }
+        
+        .coverage-select {
+            width: 100%;
+            padding: 0.375rem 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background: var(--white);
+            font-size: 0.875rem;
+            cursor: pointer;
+        }
+        
+        /* Section Headers */
+        .section-header {
+            background: var(--white);
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+        }
+        
+        .section-title {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--gray-dark);
+        }
+        
+        .show-benefits-link {
+            grid-column: 1;
+            padding: 1rem 1.5rem;
+            color: var(--blue-primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+        
+        .show-benefits-link:hover {
+            text-decoration: underline;
+        }
+        
+        .plan-actions {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            align-items: center;
+        }
+        
+        .choose-plan-button {
+            width: 100%;
+            padding: 0.875rem 2rem;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .plan-card.voyager .choose-plan-button {
+            background: var(--navy-dark);
+            color: var(--white);
+        }
+        
+        .plan-card.voyager .choose-plan-button:hover {
+            background: var(--navy-medium);
+        }
+        
+        .plan-card.voyager-plus .choose-plan-button {
+            background: var(--yellow-primary);
+            color: var(--white);
+        }
+        
+        .plan-card.voyager-plus .choose-plan-button:hover {
+            opacity: 0.9;
+        }
+        
+        .policy-link {
+            color: var(--gray-dark);
+            text-decoration: underline;
+            font-size: 0.875rem;
+        }
+        
+        .policy-link:hover {
+            color: var(--blue-primary);
+        }
+        
+        .footer {
+            background: var(--navy-dark);
+            color: var(--white);
+            padding: 1.5rem 0;
+            margin-top: auto;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .footer-copyright {
+            font-size: 0.875rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .footer-link {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: opacity 0.3s ease;
+        }
+        
+        .footer-link:hover {
+            opacity: 0.8;
+            color: var(--white);
+        }
+        
+        @media (max-width: 991px) {
+            .plans-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .coverage-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-header {
+                grid-template-columns: 1fr;
+            }
+            
+            .coverage-cell:nth-child(1) {
+                border-bottom: 1px solid var(--gray-light);
+            }
+            
+            .coverage-cell:nth-child(2),
+            .coverage-cell:nth-child(3) {
+                padding-left: 3rem;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .logo {
+                position: static;
+                transform: none;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .stepper-container {
+                padding: 0 1rem;
+            }
+            
+            .step-label {
+                font-size: 0.75rem;
+            }
+            
+            .trip-info-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+        
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        .choose-plan-button,
+        .edit-button,
+        .back-button {
+            will-change: transform;
+        }
+    </style>
+</head>
+<body>
+    <header class="header" role="banner">
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="back-button" aria-label="Go back">
+                    <svg class="back-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                    Back
+                </a>
+                <div class="logo">
+                    <div>
+                        <img src="assets/images/logo-6 (2).png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="progress-stepper" aria-label="Progress">
+        <div class="container">
+            <div class="stepper-container">
+                <div class="stepper-line">
+                    <div class="stepper-progress"></div>
+                </div>
+                
+                <div class="stepper-step">
+                    <div class="step-circle completed">
+                        <svg class="step-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                            <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                    </div>
+                    <span class="step-label">Get Quote</span>
+                </div>
+                
+                <div class="stepper-step">
+                    <div class=" active">
+                        <img src="assets/images/Vector (1).png" alt="plane">
+                    </div>
+                    <span class="step-label">Plan Option</span>
+                </div>
+                
+                <div class="stepper-step">
+                    <div class="step-circle">
+                        <svg class="step-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                    </div>
+                    <span class="step-label">Travellers</span>
+                </div>
+                
+                <div class="stepper-step">
+                    <div class="step-circle">
+                        <svg class="step-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2"/>
+                            <path d="M3 9h18M9 3v18"/>
+                        </svg>
+                    </div>
+                    <span class="step-label">Payment</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="trip-info-bar">
+        <div class="container">
+            <div class="trip-info-content">
+                <div class="trip-info-item">
+                    <span class="trip-info-label">Destination(s):</span>
+                    <span class="trip-info-value">Australia</span>
+                </div>
+                <div class="trip-info-item">
+                    <span class="trip-info-label">Dates:</span>
+                    <span class="trip-info-value">04/11/2025 - 13/11/2025</span>
+                </div>
+                <div class="trip-info-item">
+                    <span class="trip-info-label">Traveller Ages:</span>
+                    <span class="trip-info-value">23</span>
+                </div>
+                <button class="edit-button" aria-label="Edit trip details">Edit</button>
+            </div>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="plans-container">
+                <div class="plan-card voyager">
+                    <div class="plan-header">
+                        <div class="plan-icon">
+                            <div class="plan-icon-shield"></div>
+                        </div>
+                        <h2 class="plan-name">Voyager</h2>
+                        <p class="plan-original-price">From $17.37</p>
+                        <div class="plan-price">
+                            $15<span class="plan-price-cents">.98</span>
+                        </div>
+                        <p class="plan-total-label">Total Cost</p>
+                        <p class="plan-disclaimer">Policy benefits listed below, per traveller limits apply</p>
+                    </div>
+                    
+                    <div class="coverage-table">
+                        <div class="coverage-row">
+                            <div class="coverage-cell">
+                                <span class="coverage-label">
+                                    Cancellation or trip interruption
+                                    <span class="info-icon" title="Coverage information">i</span>
+                                </span>
+                            </div>
+                            <div class="coverage-cell">
+                                <span class="coverage-value">$1,000</span>
+                            </div>
+                        </div>
+                        
+                        <div class="coverage-row">
+                            <div class="coverage-cell">
+                                <span class="coverage-label">
+                                    Luggage and personal effects
+                                    <span class="info-icon" title="Coverage information">i</span>
+                                </span>
+                            </div>
+                            <div class="coverage-cell">
+                                <span class="coverage-value">$500</span>
+                            </div>
+                        </div>
+                        
+                        <div class="coverage-row">
+                            <div class="coverage-cell">
+                                <span class="coverage-label">
+                                    Travel Delay
+                                    <span class="info-icon" title="Coverage information">i</span>
+                                </span>
+                            </div>
+                            <div class="coverage-cell">
+                                <span class="coverage-unavailable">not available</span>
+                            </div>
+                        </div>
+                        
+                        <div class="coverage-row">
+                            <div class="coverage-cell">
+                                <span class="coverage-label">
+                                    Personal Liability
+                                    <span class="info-icon" title="Coverage information">i</span>
+                                </span>
+                            </div>
+                            <div class="coverage-cell">
+                                <span class="coverage-unavailable">not available</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="section-header">
+                        <span class="section-title">Optional Cover</span>
+                    </div>
+                    
+                    <div class="coverage-table">
+                        <div class="coverage-row">
+                            <div class="coverage-cell">
+                                <span class="coverage-label">
+                                    Rental Vehicle Excess
+                                    <span class="info-icon" title="Coverage information">i</span>
+                                </span>
+                            </div>
+                            <div class="coverage-cell">
+                                <span class="coverage-unavailable">not available</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="show-benefits-link-container">
+                        <a href="#" class="show-benefits-link">Show All Benefits</a>
+                    </div>
+                    
+                    <div class="plan-actions">
+                        <button class="choose-plan-button" aria-label="Choose Voyager plan">Choose Plan</button>
+                        <a href="#" class="policy-link">View Policy Information</a>
+                    </div>
+                </div>
+
+                <!-- Voyager Plus Plan -->
+                <div class="plan-card voyager-plus">
+                    <div class="plan-header">
+                        <div class="plan-icon">
+                            <div class="plan-icon-shield"></div>
+                        </div>
+                        <h2 class="plan-name">Voyager Plus</h2>
+                        <p class="plan-original-price">From $44.94</p>
+                        <div class="plan-price">
+                            $41<span class="plan-price-cents">.34</span>
+                        </div>
+                        <p class="plan-total-label">Total Cost</p>
+                        <p class="plan-disclaimer">Policy benefits listed below, per traveller limits apply</p>
+                    </div>
+                    
+                    <div class="coverage-table">
+                        <div class="coverage-row">
+                            <div class="coverage-cell">
+                                <span class="coverage-label">
+                                    Cancellation or trip interruption
+                                    <span class="info-icon" title="Coverage information">i</span>
+                                </span>
+                            </div>
+                            <div class="coverage-cell">
+                                <select class="coverage-select" aria-label="Select cancellation coverage">
+                                    <option value="4000">$4,000</option>
+                                    <option value="3000">$3,000</option>
+                                    <option value="2000">$2,000</option>
+                                    <option value="1000">$1,000</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="coverage-row">
+                            <div class="coverage-cell">
+                                <span class="coverage-label">
+                                    Luggage and personal effects
+                                    <span class="info-icon" title="Coverage information">i</span>
+                                </span>
+                            </div>
+                            <div class="coverage-cell">
+                                <select class="coverage-select" aria-label="Select luggage coverage">
+                                    <option value="1000">$1,000</option>
+                                    <option value="750">$750</option>
+                                    <option value="500">$500</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="coverage-row">
+                            <div class="coverage-cell">
+                                <span class="coverage-label">
+                                    Travel Delay
+                                    <span class="info-icon" title="Coverage information">i</span>
+                                </span>
+                            </div>
+                            <div class="coverage-cell">
+                                <span class="coverage-value">$1,000</span>
+                            </div>
+                        </div>
+                        
+                        <div class="coverage-row">
+                            <div class="coverage-cell">
+                                <span class="coverage-label">
+                                    Personal Liability
+                                    <span class="info-icon" title="Coverage information">i</span>
+                                </span>
+                            </div>
+                            <div class="coverage-cell">
+                                <span class="coverage-value">$2,500,000</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="section-header">
+                        <span class="section-title">Optional Cover</span>
+                    </div>
+                    
+                    <div class="coverage-table">
+                        <div class="coverage-row">
+                            <div class="coverage-cell">
+                                <span class="coverage-label">
+                                    Rental Vehicle Excess
+                                    <span class="info-icon" title="Coverage information">i</span>
+                                </span>
+                            </div>
+                            <div class="coverage-cell">
+                                <select class="coverage-select" aria-label="Select rental vehicle coverage">
+                                    <option value="not-selected">Not Selected</option>
+                                    <option value="5000">$5,000</option>
+                                    <option value="3000">$3,000</option>
+                                    <option value="1000">$1,000</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="show-benefits-link-container">
+                        <a href="#" class="show-benefits-link">Show All Benefits</a>
+                    </div>
+                    
+                    <div class="plan-actions">
+                        <button class="choose-plan-button" aria-label="Choose Voyager Plus plan">Choose Plan</button>
+                        <a href="#" class="policy-link">View Policy Information</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-copyright">
+                    ©2025 Logo Ipsum. All Rights Reserved.
+                </div>
+                <nav class="footer-links" aria-label="Footer navigation">
+                    <a href="#" class="footer-link">Privacy Policy</a>
+                    <a href="#" class="footer-link">Terms & Conditions</a>
+                </nav>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha384-1H217gwSVyLSIfaLxHbE7dRb3v4mYCKbpQvzx0cegeju1MVsGrX5xXxAvs/HgeFs" crossorigin="anonymous"></script>
+    
+    <script src="assets/js/Plane.js"></script>
+</body>
+</html>
